@@ -1,7 +1,5 @@
-from sqlalchemy.ext.asyncio 
-import AsyncSession, async_sessionmaker, create_async_engine
-from sqlalchemy.orm 
-import declarative_base
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
+from sqlalchemy.orm import declarative_base
 
 DATABASE_URL = "sqlite+aiosqlite:///cookbook.db"
 
