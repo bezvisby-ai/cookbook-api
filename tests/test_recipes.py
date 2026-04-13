@@ -38,7 +38,7 @@ async def setup_database():
 
 @pytest_asyncio.fixture
 async def client(setup_database):
-    transport = ASGITransport(app=app)
+    transport = ASGITransport(app=app.__call__)
     async with AsyncClient(transport=transport, base_url="http://test") as ac:
         yield ac
 
