@@ -38,7 +38,8 @@ async def setup_database():
 
 @pytest_asyncio.fixture
 async def client(setup_database):
-    async with AsyncClient(app=app, base_url="http://test") as ac
+    async with AsyncClient(app=app, base_url="http://test") as ac:
+        yield ac
 
 
 @pytest_asyncio.fixture
