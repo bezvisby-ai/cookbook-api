@@ -209,23 +209,23 @@ async def get_recipe_detail(recipe_id: int, db: AsyncSession = Depends(get_db)):
         .values(views=Recipe.views + 1)
     )
     await db.commit()
-    recipe.views += 1
+    recipe.views += 1  # type: ignore[assignment]
 
     ingredients = None
     if recipe.ingredients:
         try:
-            ingredients = json.loads(recipe.ingredients)
+            ingredients = json.loads(recipe.ingredients)  # type: ignore[arg-type]
         except json.JSONDecodeError:
-            ingredients = [recipe.ingredients]
+            ingredients = [recipe.ingredients]  # type: ignore[list-item]
 
     return RecipeDetail(
-        id=recipe.id,
-        name=recipe.name,
-        cooking_time=recipe.cooking_time,
-        ingredients=ingredients,
-        description=recipe.description,
-        views=recipe.views,
-        created_at=recipe.created_at,
+        id=recipe.id,  # type: ignore[arg-type]
+        name=recipe.name,  # type: ignore[arg-type]
+        cooking_time=recipe.cooking_time,  # type: ignore[arg-type]
+        ingredients=ingredients,  # type: ignore[arg-type]
+        description=recipe.description,  # type: ignore[arg-type]
+        views=recipe.views,  # type: ignore[arg-type]
+        created_at=recipe.created_at,  # type: ignore[arg-type]
     )
 
 
@@ -274,5 +274,8 @@ async def create_recipe(
     await db.refresh(new_recipe)
 
     return RecipeResponse(
-        id=new_recipe.id, name=new_recipe.name, message="Рецепт создан"
+        id=new_recipe.id,  # type: ignore[arg-type]
+        name=new_recipe.name,  # type: ignore[arg-type]
+        message="Рецепт создан",
     )
+
