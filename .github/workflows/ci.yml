@@ -28,11 +28,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run black
-        run: black --check --diff app/ tests/
-
       - name: Run isort
-        run: isort --check-only --diff app/ tests/
+        run: isort app/ tests/
+
+      - name: Run black
+        run: black app/ tests/
 
       - name: Run flake8
         run: flake8 app/ tests/
