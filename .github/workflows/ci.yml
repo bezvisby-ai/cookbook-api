@@ -35,7 +35,7 @@ jobs:
         run: black app/ tests/
 
       - name: Run flake8
-        run: flake8 app/ tests/
+        run: flake8 --config=flake8.cfg app/ tests/
 
       - name: Run mypy
         run: mypy app/ tests/
